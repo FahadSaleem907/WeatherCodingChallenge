@@ -28,9 +28,7 @@ final class CurrentWeatherViewModel {
             switch result {
             case .success(let currentWeather):
                 self?.currentWeather = currentWeather
-//                DispatchQueue.main.async {
-                    self?.delegate?.weatherFetched(data: currentWeather)
-//                }
+                self?.delegate?.weatherFetched(data: currentWeather)
             case .failure(let err):
                 self?.delegate?.weatherFetchFailure(err: err)
             }
