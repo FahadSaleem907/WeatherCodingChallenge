@@ -41,7 +41,6 @@ final class LocationStorageManager {
     }
     
     func save(location: Coordinates) {
-        print("Saving to UserDefaults: \(location.latitude) and \(location.longitude)")
         storageManager.save(key: UserDefaultKeys.latitude.rawValue, value: "\(location.latitude)")
         storageManager.save(key: UserDefaultKeys.longitude.rawValue, value: "\(location.longitude)")
     }

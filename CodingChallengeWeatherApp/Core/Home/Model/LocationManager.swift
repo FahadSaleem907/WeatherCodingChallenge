@@ -34,7 +34,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             if !locationStoreManager.exists(key: .latitude) {
-                print("Got the coords values: \(location.coordinate.latitude.stringValue) and \(location.coordinate.longitude.stringValue)")
                 locationStoreManager.save(location: LocationStorageManager.Coordinates(latitude: location.coordinate.latitude.stringValue, longitude: location.coordinate.longitude.stringValue))
             }
             didUpdateLocation?(location)

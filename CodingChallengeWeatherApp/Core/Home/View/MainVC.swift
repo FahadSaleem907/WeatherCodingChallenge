@@ -98,7 +98,13 @@ class MainVC: UIViewController {
     }
     
     func setupLocBindings() {
-        locationViewModel.currentLocation = {  location in
+        locationViewModel.currentLocation = { [weak self] location in
+            let coords = self?.weatherViewModel.alreadyHasCoordinates()
+            ///In case when coordinates are not saved properly on first location access
+            if coords?.lat == nil || coords?.lon == nil {
+                UserDefaults.standard.set(location.coordinate.latitude.stringValue, forKey: "latitude")
+                UserDefaults.standard.set(location.coordinate.longitude, forKey: "longitude")
+            }
         }
         
         locationViewModel.error = { error in
